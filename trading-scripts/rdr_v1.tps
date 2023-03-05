@@ -5,7 +5,7 @@
 indicator("KP - Red Dog Reversal", shorttitle = "RDR", overlay = true)
 
 // Catch countertrend moves in overbought and oversold stocks (Both day & swing trading)
-// 
+//
 // Rules:
 //  Buy Setup
 // - Stock is trading down 2+ days in a row
