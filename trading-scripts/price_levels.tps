@@ -14,7 +14,7 @@ color       colorHigh       = input.color(defval = color.green, title = "price h
 
 // variables
 var line        premarketHighLine       = na
-var line        premarketLowLine        = na˝
+var line        premarketLowLine        = na
 var line        priorDayHighLine        = na
 var line        priorDayLowLine         = na
 var line        priorMthHighLine        = na
