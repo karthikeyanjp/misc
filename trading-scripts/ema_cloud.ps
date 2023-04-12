@@ -1,0 +1,50 @@
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © karthikeyanjp
+
+//@version=5
+indicator("EMA Cloud", shorttitle = "EMA Cloud", overlay = true)
+
+int fastEMALength       = input.int(
+                             defval = 5,
+                             title = "Fast EMA length",
+                             minval = 1,
+                             maxval = 250,
+                             step = 1,
+                             tooltip = "Length of the fast EMA"
+                             )
+
+int slowEMALength       = input.int(
+                             defval = 8,
+                             title = "Slow EMA length",
+                             minval = 1,
+                             maxval = 250,
+                             step = 1,
+                             tooltip = "Length of the slow EMA"
+                             )
+
+color crossOverColor    = input.color(
+                             defval = color.new(color.green, 50),
+                             title = "cross over color",
+                             tooltip = "color of the cloud when the fast EMA is above the slow EMA"
+                             )
+
+color crossUnderColor   = input.color(
+                             defval = color.new(color.red, 50),
+                             title = "cross under color",
+                             tooltip = "color of the cloud when the fast EMA is below the slow EMA"
+                             )
+
+source                  = input.source(
+                             defval = close,
+                             title = "Source",
+                             tooltip = "Source"
+                             )
+
+fastEMA = ta.ema(source, fastEMALength)
+slowEMA = ta.ema(source, slowEMALength)
+emaCloudColor = fastEMA > slowEMA ? crossOverColor : crossUnderColor
+
+fastEMAPlot = plot(fastEMA, color = na, linewidth = 0, display = display.none)
+slowEMAPlot = plot(slowEMA, color = na, linewidth = 0, display = display.none)
+
+fill(fastEMAPlot, slowEMAPlot, color = emaCloudColor, title = "EMA Cloud")
